@@ -1,0 +1,14 @@
+{
+  "name": "loop-breaker",
+  "version": "0.1.0",
+  "description": "Transforms JavaScript code to ensure that loops do not run indefinitely",
+  "main": "index.js",
+  "author": "Mat Brown",
+  "license": "MIT",
+  "dependencies": {
+    "recast": "^0.11.22"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
+}
