@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "author": {
     "name": "Mat Brown",
-    "email", "mat.a.brown@gmail.com",
+    "email", "mat.a.brown@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
