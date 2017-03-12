@@ -1,4 +1,5 @@
 const gulp = require('gulp');
+const _ = require('lodash');
 const babel = require('gulp-babel');
 const webpack = require('webpack');
 const del = require('del');
@@ -13,9 +14,18 @@ gulp.task('compile', ['clean'], () =>
     pipe(gulp.dest('lib'))
 );
 
-gulp.task('build', ['clean'], () =>
-  pify(webpack)(webpackConfig)
-);
+gulp.task('build', ['clean'], () => {
+  const minifiedWebpackConfig = _.cloneDeep(webpackConfig);
+  minifiedWebpackConfig.output.filename =
+    minifiedWebpackConfig.output.filename.replace('.js', '.min.js');
+  minifiedWebpackConfig.plugins = [
+    new webpack.optimize.UglifyJsPlugin({minimize: true})
+  ];
+  return Promise.all([
+    pify(webpack)(webpackConfig),
+    pify(webpack)(minifiedWebpackConfig),
+  ]);
+});
 
 gulp.task('clean', () => {
   return del([
