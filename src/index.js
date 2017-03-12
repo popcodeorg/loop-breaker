@@ -5,20 +5,21 @@ const n = types.namedTypes;
 const b = types.builders;
 
 const loopBreaker = recast.parse(`var __loopBreaker = (function() {
-  var count = 0;
-  var startTime;
-  return function() {
-    startTime || (startTime = Date.now());
-    count += 1;
-    if (count > 10000 && (Date.now() - startTime > 1000)) {
+  var loops = {};
+  return function(i) {
+    if (!loops[i]) {
+      loops[i] = {startTime: Date.now(), count: 0}
+    }
+    var loop = loops[i];
+    loop.count += 1;
+    if (loop.count > 10000 && (Date.now() - loop.startTime > 1000)) {
       throw new Error("Loop Broken!");
     }
   };
 }());\n`).program.body;
 
-const check = recast.parse(`__loopBreaker();`).program.body;
-
-function fixLoop(loop) {
+function fixLoop(loop, i) {
+  const check = recast.parse(`__loopBreaker(${i});`).program.body;
   if (n.BlockStatement.check(loop.body)) {
     loop.body.body = check.concat(loop.body.body);
   } else {
@@ -28,20 +29,21 @@ function fixLoop(loop) {
 
 export default function(str) {
   const ast = recast.parse(str);
+  let i = 0;
   ast.program.body = loopBreaker.concat(ast.program.body);
   recast.visit(ast, {
     visitWhileStatement(loop) {
-      fixLoop(loop.node);
+      fixLoop(loop.node, i++);
       this.traverse(loop);
     },
 
     visitForStatement(loop) {
-      fixLoop(loop.node);
+      fixLoop(loop.node, i++);
       this.traverse(loop);
     },
 
     visitDoWhileStatement(loop) {
-      fixLoop(loop.node);
+      fixLoop(loop.node, i++);
       this.traverse(loop);
     }
   });
