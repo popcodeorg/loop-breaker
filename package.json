@@ -18,6 +18,7 @@
     "babel-preset-env": "^1.2.0",
     "babel-tape-runner": "^2.0.1",
     "del": "^2.2.2",
+    "eslint": "^3.17.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "lodash": "^4.17.4",
@@ -27,6 +28,8 @@
     "webpack-stream": "^3.2.0"
   },
   "scripts": {
+    "lint": "eslint src test *.js",
+    "pretest": "yarn run lint",
     "test": "babel-tape-runner test"
   },
   "babel": {

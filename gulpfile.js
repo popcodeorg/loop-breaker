@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const gulp = require('gulp');
 const _ = require('lodash');
 const babel = require('gulp-babel');

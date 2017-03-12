@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const path = require('path');
+/* eslint-env node */
+
 const libraryName = 'loopBreaker';
 const outputFile = `${libraryName}.js`;
 
