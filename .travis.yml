@@ -7,8 +7,7 @@ deploy:
   on:
     tags: true
   skip_cleanup: true
-  file_glob: true
-  file: dist/**.js
+  file: 'dist/loopBreaker.js'
   api_key:
     secure: bL6if47o+rXo+R/s+FzXElfnjEhiWeog98uVY3uFXzJryJ22YSeHn5up5QI7BCAtCoBihKele0+gFsvIJTtu6m4DXSdGVls+ucVv94oeI1KY0caJSaf6ba+5TN9rF7KEQInB/C06vs1queyx1SQjpdpKrBQx74vU4/F0ydref3o8QvRstMJj9VU32YncRdIlCVylkQXaDrb6Lk7RL+BH/fzMXqIVtDYgoVZVsPrZ2wt9gaWDnDyfO86srUwdXfk7LK223D8vVLTr2s+D8fFuskl9FyWEnZcDhdM0vDNC6sdxytb4tcjyXiFfBhJ2/oI059eiUZXC3QJ6sHO1EGo+FW754V605LYvvMkGNQ+Cc4fX7CZ7h1xtSrXpPtYmc7uGVk3ms4V2NJjPn6/XhzVDnzYs9WUTQvWrIfwJkQFiPlxTz5HHel55/yKek2EG6PnDDc2mVgk0DpvGFroVN6Kvm3+Gw/T2dsukCP0PTrIFsGt50XdatvXfHTS4s34NERSWacQ+E9yxaNehBtymjBmwJALWxID3F4/1ynuYp9SEkg67mFHLf9gMf8dwYeBp1DPqeuWY7he2zR9wZKkUnt0BOFLxiOEc6WngVbC6udfP24w68j1tLkSfX2xHJB2RD0EZ4/1ES/+johAluav64Z//jUY4AtwS1X6kCx94WvUMB6o=
 - provider: npm
