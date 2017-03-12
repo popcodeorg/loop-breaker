@@ -21,6 +21,30 @@ testBrokenLoop('for without body', (c) => {
   for (let i = 0; c(); i++) void(0);
 });
 
+testBrokenLoop('nested infinite for loops', (c) => {
+  for (let i = 0; c(); i++) {
+    for (let j = 0; c(); j++) {
+      void(0);
+    }
+  }
+});
+
+testBrokenLoop('inner infinite for loop', (c) => {
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; c(); j++) {
+      void(0);
+    }
+  }
+});
+
+testBrokenLoop('outer infinite for loop', (c) => {
+  for (let i = 0; c(); i++) {
+    for (let j = 0; j < 10; j++) {
+      void(0);
+    }
+  }
+});
+
 testBrokenLoop('do-while with body', (c) => {
   do {
     void(0);
