@@ -1,14 +1,45 @@
 {
   "name": "loop-breaker",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha.1",
   "description": "Transforms JavaScript code to ensure that loops do not run indefinitely",
-  "main": "index.js",
+  "main": "lib/index.js",
   "author": "Mat Brown",
   "license": "MIT",
   "dependencies": {
     "recast": "^0.11.22"
   },
   "devDependencies": {
-    "tape": "^4.6.3"
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-preset-env": "^1.2.0",
+    "babel-tape-runner": "^2.0.1",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "lodash": "^4.17.4",
+    "pify": "^2.3.0",
+    "tape": "^4.6.3",
+    "webpack": "^2.2.1",
+    "webpack-stream": "^3.2.0"
+  },
+  "scripts": {
+    "test": "babel-tape-runner test"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": "> 1%",
+            "node": true
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "babel-plugin-add-module-exports"
+    ]
   }
 }
