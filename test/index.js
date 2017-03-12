@@ -1,37 +1,41 @@
 import test from 'tape';
-import {spawn} from 'child_process';
 import loopBreaker from '../src/';
 
-const A_LOT = 10000000000;
-
-/*
-*/
-testBrokenLoop('while with body', () => {
-  var i = 0;
-  while (i < A_LOT) {
-    i++;
+testBrokenLoop('while with body', (cont) => {
+  while (cont()) {
+    void(0);
   }
 });
 
-testBrokenLoop('while without body', () => {
-  var i = 0;
-  while (i < A_LOT) i++;
+testBrokenLoop('while without body', (cont) => {
+  while (cont()) void(0);
 });
 
-testBrokenLoop('for with body', () => {
-  for (var i = 0; i < A_LOT; i++) {
+testBrokenLoop('for with body', (cont) => {
+  for (var i = 0; cont(); i++) {
+    void(0);
   }
 });
 
-testBrokenLoop('for with body', () => {
-  for (var i = 0; i < A_LOT; i++) i *= 1;
+testBrokenLoop('for without body', (cont) => {
+  for (var i = 0; cont(); i++) void(0);
+});
+
+testBrokenLoop('do-while with body', (cont) => {
+  do {
+    void(0);
+  } while (cont());
 });
 
 function testBrokenLoop(message, fn) {
   test(message, (assert) => {
+    const startTime = Date.now();
     const fnSource = loopBreaker(fn.toString());
     const modifiedFn = eval(fnSource);
-    assert.throws(() => modifiedFn(), /loop broken/i);
+    assert.throws(
+      () => modifiedFn(() => Date.now() - startTime < 5000),
+      /loop broken/i
+    );
     assert.end();
   });
 }

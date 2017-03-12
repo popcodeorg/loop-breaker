@@ -38,6 +38,11 @@ export default function(str) {
     visitForStatement(loop) {
       fixLoop(loop.node);
       this.traverse(loop);
+    },
+
+    visitDoWhileStatement(loop) {
+      fixLoop(loop.node);
+      this.traverse(loop);
     }
   });
   return recast.print(ast).code;

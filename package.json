@@ -13,6 +13,9 @@
     "babel-tape-runner": "^2.0.1",
     "tape": "^4.6.3"
   },
+  "scripts": {
+    "test": "babel-tape-runner test"
+  },
   "babel": {
     "presets": [
       [
