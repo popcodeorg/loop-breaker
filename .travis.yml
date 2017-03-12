@@ -2,18 +2,20 @@ language: node_js
 node_js:
 - 7.6.0
 cache: yarn
+before_deploy: gulp
 deploy:
 - provider: releases
   on:
     tags: true
   skip_cleanup: true
   file_glob: true
-  file: dist/**.js
+  file: 'dist/**.js'
   api_key:
     secure: bL6if47o+rXo+R/s+FzXElfnjEhiWeog98uVY3uFXzJryJ22YSeHn5up5QI7BCAtCoBihKele0+gFsvIJTtu6m4DXSdGVls+ucVv94oeI1KY0caJSaf6ba+5TN9rF7KEQInB/C06vs1queyx1SQjpdpKrBQx74vU4/F0ydref3o8QvRstMJj9VU32YncRdIlCVylkQXaDrb6Lk7RL+BH/fzMXqIVtDYgoVZVsPrZ2wt9gaWDnDyfO86srUwdXfk7LK223D8vVLTr2s+D8fFuskl9FyWEnZcDhdM0vDNC6sdxytb4tcjyXiFfBhJ2/oI059eiUZXC3QJ6sHO1EGo+FW754V605LYvvMkGNQ+Cc4fX7CZ7h1xtSrXpPtYmc7uGVk3ms4V2NJjPn6/XhzVDnzYs9WUTQvWrIfwJkQFiPlxTz5HHel55/yKek2EG6PnDDc2mVgk0DpvGFroVN6Kvm3+Gw/T2dsukCP0PTrIFsGt50XdatvXfHTS4s34NERSWacQ+E9yxaNehBtymjBmwJALWxID3F4/1ynuYp9SEkg67mFHLf9gMf8dwYeBp1DPqeuWY7he2zR9wZKkUnt0BOFLxiOEc6WngVbC6udfP24w68j1tLkSfX2xHJB2RD0EZ4/1ES/+johAluav64Z//jUY4AtwS1X6kCx94WvUMB6o=
 - provider: npm
   on:
     tags: true
   skip_cleanup: true
+  email: "mat.a.brown+popcode@gmail.com"
   api_key:
     secure: VLiyNO34pSN+GH9ckYCj/JE/m1Myyd/N1KjCWNe7isWyVzcBXohXEy8rT0jte9dZKfYcVPMZdOQ0Pkhygjc4Nw1jSWJe+Afe58FFgeg1mX3RFP+MllTsLk40vNeL+otej/ntGgwv9cuHB5nitQbb4FRFagUAElI13D1HM7OsaIj76oo1uA+zv1ytT38HImsHMj22e1bL7oZDe3iynwq+NJGSZWUOVO/hji9d582T6Pm5I2JPVrFDBOaBhi94ZX6HH+zZWjsUjQMupG4UQOAqOPtVaVrOEkxr85bcwexs0F1RgGDFvZSDb6tSZHlqHedKEZxGj1W+RXoazAMnsEFdt7UyXMx0BEvbeKCJQ7gVqQlKSdiGhnDuTj/ZGBOikCaU9MnJt/8JMilazAUNXNasNo/JYd5QKj8S6SuKnwvnpLrbM1oLWICB8vZHZm6ZhQ2WzX5Pj7DoE9V9RGgGRjIOD3ZEx0JaN1ytsQQB5siLbcNVTIpcwdfaaMV3ychNLE1EemelIKGWveh4qdGkjxm4q/NqD9uyYBHxGHUPQRuFjOWyi/SVwBHzoMsdgN0fFI4hPPh64HT4XifvglKokyPhf77rvZMAlKeJhqPtU7fhkBOk4yG7vKMeZxFClEZTa8wILH7F7K/JpY2/lMIsqbdnLuKOVs3UuiL4/6xNJqdgI4o=
