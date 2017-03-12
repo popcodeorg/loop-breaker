@@ -1,11 +1,11 @@
 {
   "name": "loop-breaker",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "description": "Transforms JavaScript code to ensure that loops do not run indefinitely",
   "main": "lib/index.js",
   "author": {
     "name": "Mat Brown",
-    "email", "mat.a.brown@gmail.com"
+    "email": "mat.a.brown@gmail.com"
   },
   "license": "MIT",
   "dependencies": {
