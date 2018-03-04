@@ -9,7 +9,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "recast": "^0.11.22"
+    "recast": "^0.14.4"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
