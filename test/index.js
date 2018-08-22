@@ -51,6 +51,14 @@ testBrokenLoop('do-while with body', (c) => {
   } while (c());
 });
 
+testBrokenLoop('non-infinite slow code execution', () => {
+  const testStartTime = Date.now() + 2000;
+  function checkDate() {
+    return Date.now() - testStartTime < 2000;
+  }
+  while (checkDate()) void(0);
+});
+
 function testBrokenLoop(message, fn) {
   test(message, (assert) => {
     const startTime = Date.now();

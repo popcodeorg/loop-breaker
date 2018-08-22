@@ -19,7 +19,7 @@ const loopBreaker = recast.parse(`var __loopBreaker = (function() {
       }
 
       loop.count += 1;
-      if (loop.count > 10000 && (Date.now() - loop.startTime > 1000)) {
+      if (loop.count > 10000 || (Date.now() - loop.startTime > 1000)) {
         throw new Error("Loop Broken!");
       }
     },
