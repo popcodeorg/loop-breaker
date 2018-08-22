@@ -38,7 +38,7 @@ Modifies input code to do the following:
   executing loop should be broken
 * Injects into `for`, `while`, and `do-while` loops a call to `loopBreaker()`
 
-The loop is considered likely-infinite if the following two conditions hold:
+The loop is considered likely-infinite if either of the following two conditions is met:
 
 * The loop has executed at least ten thousand times
 * The loop has been running for at least one second of wall time
@@ -60,7 +60,7 @@ var __loopBreaker = (function() {
   return function() {
     startTime || (startTime = Date.now());
     count += 1;
-    if (count > 10000 && (Date.now() - startTime > 1000)) {
+    if (count > 10000 || (Date.now() - startTime > 1000)) {
       throw new Error("Loop Broken!");
     }
   };
