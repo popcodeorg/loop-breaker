@@ -1,6 +1,6 @@
 {
   "name": "loop-breaker",
-  "version": "0.1.0",
+  "version": "0.1.1-alpha.1",
   "description": "Transforms JavaScript code to ensure that loops do not run indefinitely",
   "main": "lib/index.js",
   "author": {
