@@ -30,6 +30,18 @@ script](https://github.com/popcodeorg/loop-breaker/releases) in the browser:
 <script src="/js/loopBreaker.min.js"></script>
 ```
 
+## Usage
+
+```javascript
+import loopBreaker from 'loop-breaker';
+
+const source = 'const myCode = "hello world";';
+const result = loopBreaker(source);
+
+const transformedCode = result.code;
+const sourceMap = result.map;
+```
+
 ## How it works
 
 Modifies input code to do the following:

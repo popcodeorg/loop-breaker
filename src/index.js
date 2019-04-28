@@ -46,7 +46,9 @@ function fixLoop({node, parentPath}, i) {
 }
 
 export default function(str) {
-  const ast = recast.parse(str);
+  const ast = recast.parse(str, {
+    sourceFileName: 'loopBreaker.js',
+  });
   let i = 0;
   ast.program.body = loopBreaker.concat(ast.program.body);
   recast.visit(ast, {
@@ -65,5 +67,8 @@ export default function(str) {
       this.traverse(loop);
     }
   });
-  return recast.print(ast).code;
+  const result = recast.print(ast, {
+    sourceMapName: 'map.json',
+  });
+  return result;
 }
