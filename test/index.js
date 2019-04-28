@@ -53,7 +53,15 @@ testBrokenLoop('do-while with body', (c) => {
 
 test('it adds a sourcemap', (assert) => {
   const { map } = loopBreaker(`for (let i = 0; i > -1; i++) { void(0); }`);
-  assert.ok(map);
+  assert.equals(map.sources[0], 'loopBreaker.js');
+  assert.end();
+});
+
+test('it adds a sourcemap with a name', (assert) => {
+  const { map } = loopBreaker(`for (let i = 0; i > -1; i++) { void(0); }`, {
+    sourceFileName: 'popcode.js',
+  });
+  assert.equals(map.sources[0], 'popcode.js');
   assert.end();
 });
 

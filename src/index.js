@@ -45,9 +45,10 @@ function fixLoop({node, parentPath}, i) {
   parentPath.replace([...parentPath.value, ...markSafe]);
 }
 
-export default function(str) {
+export default function(str, options) {
+  const sourceFileName = options ? options.sourceFileName : 'loopBreaker.js';
   const ast = recast.parse(str, {
-    sourceFileName: 'loopBreaker.js',
+    sourceFileName,
   });
   let i = 0;
   ast.program.body = loopBreaker.concat(ast.program.body);
