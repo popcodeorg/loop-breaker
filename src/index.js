@@ -69,7 +69,7 @@ export default function(str, options) {
     }
   });
   const result = recast.print(ast, {
-    sourceMapName: 'map.json',
+    sourceMapName: sourceFileName + '.map',
   });
   return result;
 }
