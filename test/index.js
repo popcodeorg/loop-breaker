@@ -51,10 +51,24 @@ testBrokenLoop('do-while with body', (c) => {
   } while (c());
 });
 
+test('it adds a sourcemap', (assert) => {
+  const { map } = loopBreaker(`for (let i = 0; i > -1; i++) { void(0); }`);
+  assert.equals(map.sources[0], 'loopBreaker.js');
+  assert.end();
+});
+
+test('it adds a sourcemap with a name', (assert) => {
+  const { map } = loopBreaker(`for (let i = 0; i > -1; i++) { void(0); }`, {
+    sourceFileName: 'popcode.js',
+  });
+  assert.equals(map.sources[0], 'popcode.js');
+  assert.end();
+});
+
 function testBrokenLoop(message, fn) {
   test(message, (assert) => {
     const startTime = Date.now();
-    const fnSource = loopBreaker(`(${fn})`);
+    const fnSource = loopBreaker(`(${fn})`).code;
     const modifiedFn = eval(fnSource);
     assert.throws(
       () => modifiedFn(() => Date.now() - startTime < 5000),

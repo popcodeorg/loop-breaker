@@ -45,8 +45,11 @@ function fixLoop({node, parentPath}, i) {
   parentPath.replace([...parentPath.value, ...markSafe]);
 }
 
-export default function(str) {
-  const ast = recast.parse(str);
+export default function(str, options) {
+  const sourceFileName = options ? options.sourceFileName : 'loopBreaker.js';
+  const ast = recast.parse(str, {
+    sourceFileName,
+  });
   let i = 0;
   ast.program.body = loopBreaker.concat(ast.program.body);
   recast.visit(ast, {
@@ -65,5 +68,8 @@ export default function(str) {
       this.traverse(loop);
     }
   });
-  return recast.print(ast).code;
+  const result = recast.print(ast, {
+    sourceMapName: sourceFileName + '.map',
+  });
+  return result;
 }
